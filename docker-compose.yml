@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${PSQL_USER}
+      POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+      POSTGRES_DB: ${PSQL_DB}
+    ports:
+      - "${PSQL_PORT}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  backend:
+    image: abhaypc011/my-backend-app:latest
+    ports:
+      - "${BACKEND_PORT}:3000"
+    environment:
+      DATABASE_URL: postgres://${PSQL_USER}:${PSQL_PASSWORD}@db:${PSQL_PORT}/${PSQL_DB}
+    depends_on:
+      - db
+
+volumes:
+  db-data:
