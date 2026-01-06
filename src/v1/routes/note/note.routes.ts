@@ -4,5 +4,7 @@ import makeCallback from "../../../config/makeCallback";
 
 const noteRouter = Router({ mergeParams: true });
 
-noteRouter.post('/note', makeCallback(createNote));
-noteRouter.get('/note', makeCallback(getAllNotes));
+noteRouter.post('/', makeCallback(createNote));
+noteRouter.get('/', makeCallback(getAllNotes));
+
+export default noteRouter;

@@ -17,15 +17,7 @@ export const createNote = async (noteData: any) => {
 
 export const getAllNotes = async () => {
   try {
-    const notes = await Note.findAll({
-      include: [
-        {
-          model: User,
-          as: "user_info",
-          attributes: ["name", "username"],
-        },
-      ],
-    });
+    const notes = await Note.findAll();
     return {
         message:"success",
         data : notes

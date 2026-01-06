@@ -3,6 +3,7 @@ import { CustomError } from "../../../config/customError";
 import * as noteService from "../../services/note/note.service";
 
 export const createNote : IController = async (req) => {
+  console.log(req.body)
   try {
     return await noteService.createNote(req.body);
   } catch (error: any) {

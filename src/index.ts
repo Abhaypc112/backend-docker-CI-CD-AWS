@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(`/${process.env.CONTEXT_PATH}`, apiRouter);
 connectDB();
 
-app.use(logger);
+// app.use(logger);
 app.use(globalErrorHandler);
 
 app.listen(PORT, () => {
