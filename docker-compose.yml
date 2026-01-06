@@ -1,25 +1,22 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: ${PSQL_USER}
-      POSTGRES_PASSWORD: ${PSQL_PASSWORD}
-      POSTGRES_DB: ${PSQL_DB}
-    ports:
-      - "${PSQL_PORT}:5432"
-    volumes:
-      - db-data:/var/lib/postgresql/data
-
   backend:
-    image: abhaypc011/my-backend-app:latest
+    build: .
+    container_name: node-app
     ports:
-      - "${BACKEND_PORT}:3000"
-    environment:
-      DATABASE_URL: postgres://${PSQL_USER}:${PSQL_PASSWORD}@db:${PSQL_PORT}/${PSQL_DB}
+      - "3000:3000"
+    env_file:
+      - .env
     depends_on:
       - db
 
-volumes:
-  db-data:
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"

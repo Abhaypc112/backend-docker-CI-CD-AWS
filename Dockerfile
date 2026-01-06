@@ -1,5 +1,5 @@
 # 1. Base image
-FROM node:20-alpine
+FROM node:18-alpine
 
 # 2. Set working directory
 WORKDIR /app
@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 3000
 
 # 8. Start app
-CMD ["npm", "start"]
+CMD ["node", "dist/index.js"]
