@@ -23,7 +23,7 @@ export const initiateAuth = async () => {
   const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=profile email`;
   return {
     message: "success done",
-    data: url,
+    data: "url",
   };
 };
 
